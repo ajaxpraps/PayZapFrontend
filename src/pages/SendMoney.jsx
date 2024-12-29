@@ -35,7 +35,7 @@ export const SendMoney = () => {
         />
         <ButtonComponent
           onClick={async() => {
-            if(amount<=0 || amount>balance){
+            if(amount<=0 || parseInt(amount, 10)>parseInt(balance, 10)){
               alert(" The amount you want send is either negative or more than your current balance ");
             }else{
               await axios.post(
