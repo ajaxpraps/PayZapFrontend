@@ -28,14 +28,14 @@ export const Users = ({userId,balance}) => {
       />
       <div>
         {users.map((user) => (
-         (user._id!=userId)&& <User user={user} />
+         (user._id!=userId)&& <User user={user} balance={balance} />
         ))}
       </div>
     </div>
   );
 };
 
-function User({ user }) {
+function User({ user,balance }) {
   const navigate = useNavigate();
 
   return (
