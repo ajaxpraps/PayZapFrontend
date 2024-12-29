@@ -3,7 +3,7 @@ import { ButtonComponent } from "./ButtonComponent";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export const Users = ({userId}) => {
+export const Users = ({userId,balance}) => {
   const [users, setUsers] = useState([]);
   const [filter, setFilter] = useState("");
 
@@ -52,7 +52,7 @@ function User({ user }) {
       <div className="w-40 flex justify-center items-center text-sm">
         <ButtonComponent
           onClick={() => {
-            navigate("/send?id=" + user._id + "&name=" + user.firstName);
+            navigate("/send?id=" + user._id + "&name=" + user.firstName+ "&balance="+balance);
           }}
           text={"Send Money"}
         />
