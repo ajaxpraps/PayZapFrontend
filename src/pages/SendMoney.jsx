@@ -10,6 +10,7 @@ export const SendMoney = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
+  const balance = searchParams.get("balance");
   const name = searchParams.get("name");
 
   const [amount, setAmount] = useState(0);
@@ -34,20 +35,24 @@ export const SendMoney = () => {
         />
         <ButtonComponent
           onClick={async() => {
-            await axios.post(
-              "https://payzap.onrender.com/api/v1/account/transfer",
-              {
-                to: id,
-                amount,
-              },
-              {
-                headers: {
-                  Authorization: "Bearer " + localStorage.getItem("token"),
+            if(amount<=0 || amount>balance){
+              alert(" The amount you want send is either negative or more than your current balance ");
+            }else{
+              await axios.post(
+                "https://payzap.onrender.com/api/v1/account/transfer",
+                {
+                  to: id,
+                  amount,
                 },
-              }
-            );
-            navigate("/dashboard");
-
+                {
+                  headers: {
+                    Authorization: "Bearer " + localStorage.getItem("token"),
+                  },
+                }
+              );
+              navigate("/dashboard");
+            }
+           
           }}
           text={"Initiate Transfer"}
         />
