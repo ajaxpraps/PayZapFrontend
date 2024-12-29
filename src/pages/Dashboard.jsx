@@ -40,7 +40,7 @@ export const Dashboard = () => {
     <div className="px-32 py-10">
       <Appbar />
       <Balance balance={currentMoney} />
-      <Users userId ={id}/>
+      <Users userId ={id} balance = {currentMoney}/>
     </div>
   );
 };
